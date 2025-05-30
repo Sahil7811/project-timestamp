@@ -1,32 +1,178 @@
 <!DOCTYPE html>
-
-<html>
-   <head>
-      <title>Timestamp Microservice | freeCodeCamp.org</title>
-      <link rel="shortcut icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png" type="image/x-icon"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="style.css" rel="stylesheet" type="text/css">
-   </head>
-
-   <body>
-    <h1>Timestamp Microservice</h1>
-    <hr />
-    <div class="container">
-      <h2>Example Usage:</h2>
-      <ul>
-        <li><a href="api/2015-12-25">[project url]/api/2015-12-25</a></li>
-        <li><a href="api/1451001600000">[project url]/api/1451001600000</a></li>
-      </ul>
-
-      <h2>Example Output:</h2>
-      <p>
-        <code>{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code>
-      </p>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timestamp Microservice</title>
+    <link
+      rel="shortcut icon"
+      href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Floating Particles Background -->
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
     </div>
-    <div class="footer">
-      <p>
-        By <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a>
-      </p>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <!-- Header Section -->
+      <header class="header">
+        <h1 class="title">
+          <span class="title-text">Timestamp</span>
+          <span class="title-highlight">Microservice</span>
+        </h1>
+        <div class="subtitle">Convert timestamps with precision and style</div>
+      </header>
+
+      <!-- Glass Card Container -->
+      <div class="glass-card">
+        <div class="card-content">
+          <!-- Usage Section -->
+          <section class="section">
+            <h2 class="section-title">
+              <span class="icon">🚀</span>
+              Example Usage
+            </h2>
+            <div class="usage-grid">
+              <div class="usage-item">
+                <div class="usage-label">Date Format</div>
+                <a href="api/2015-12-25" class="api-link">
+                  <span class="link-text">[project url]/api/2015-12-25</span>
+                  <span class="link-arrow">→</span>
+                </a>
+              </div>
+              <div class="usage-item">
+                <div class="usage-label">Unix Timestamp</div>
+                <a href="api/1451001600000" class="api-link">
+                  <span class="link-text">[project url]/api/1451001600000</span>
+                  <span class="link-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Divider -->
+          <div class="divider"></div>
+
+          <!-- Output Section -->
+          <section class="section">
+            <h2 class="section-title">
+              <span class="icon">✨</span>
+              Example Output
+            </h2>
+            <div class="output-container">
+              <div class="json-display">
+                <div class="json-content">
+                  <span class="json-brace">{</span>
+                  <div class="json-line">
+                    <span class="json-key">"unix"</span>
+                    <span class="json-colon">:</span>
+                    <span class="json-value json-number">1451001600000</span>
+                    <span class="json-comma">,</span>
+                  </div>
+                  <div class="json-line">
+                    <span class="json-key">"utc"</span>
+                    <span class="json-colon">:</span>
+                    <span class="json-value json-string"
+                      >"Fri, 25 Dec 2015 00:00:00 GMT"</span
+                    >
+                  </div>
+                  <span class="json-brace">}</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard()">
+                  <span class="copy-text">Copy</span>
+                  <span class="copy-icon">📋</span>
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <span>Crafted with</span>
+          <span class="heart">💜</span>
+          <span>by</span>
+          <a href="https://www.freecodecamp.org/" class="footer-link"
+            >freeCodeCamp.org</a
+          >
+        </div>
+      </footer>
     </div>
+
+    <!-- Click Effect Container -->
+    <div id="click-effects"></div>
+
+    <script>
+      // Copy to clipboard functionality
+      function copyToClipboard() {
+        const text =
+          '{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}';
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          const originalText = btn.innerHTML;
+          btn.innerHTML =
+            '<span class="copy-text">Copied!</span><span class="copy-icon">✅</span>';
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      }
+
+      // Click particle effects
+      document.addEventListener("click", function (e) {
+        createClickEffect(e.clientX, e.clientY);
+      });
+
+      function createClickEffect(x, y) {
+        const effect = document.createElement("div");
+        effect.className = "click-effect";
+        effect.style.left = x + "px";
+        effect.style.top = y + "px";
+
+        document.getElementById("click-effects").appendChild(effect);
+
+        setTimeout(() => {
+          effect.remove();
+        }, 600);
+      }
+
+      // Smooth scroll behavior
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Add loading animation
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+      });
+    </script>
   </body>
 </html>
